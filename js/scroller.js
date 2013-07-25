@@ -2,11 +2,21 @@ var Scroller = (function(){
 	function Scroller(content, control){
 		var self 		= this;
 		this.value 		= 0;
+		this.y 			= 0;
 		this.content 	= content;
 		this.control 	= control;
 		this._control 	= new ScrollBar(this.control);
 
 		this.content.css('overflow', 'hidden');
+
+		this.control.on('mousedown', function(e, percent){
+			if($(e.target).closest(self.control.find('> div')).length == 0){
+				var y = e.pageY;
+				var posY = y - $(this).offset().top - $('> div', this).height()/2;
+
+				self._control.gotoPos(posY);
+			}
+		});
 
 		this.control.on('change', function(e, percent){
 			self.goto(percent);
@@ -14,7 +24,7 @@ var Scroller = (function(){
 
 		this.content.on('mousewheel', function(e, d){
 			e.preventDefault();
-			self.goto(self.value - (d * 5), true);
+			self.gotoPos(self.y - (d * 30), true);
 		});
 
 		this.reset();
@@ -29,12 +39,11 @@ var Scroller = (function(){
 
 		this.control.find('> div').height(height);
 
-		if(this.content[0].scrollHeight > this.content.innerHeight()){
+		if (this.content[0].scrollHeight > this.content.innerHeight()) {
 			this.control.show();
-		}else{
+		} else {
 			this.control.hide();
 		}
-
 	}
 
 	Scroller.prototype.reset = function(){
@@ -50,6 +59,30 @@ var Scroller = (function(){
 		//Position of content
 		var yMax = this.content[0].scrollHeight - this.content.innerHeight();
 		var y = (yMax * p) / 100;
+		this.y = y;
+		this.content.scrollTop(y);
+
+		//Position of control
+		if(moveControl){
+			yMax = this.control.height() - this.control.find('> div').height();
+			y = (yMax * p) / 100;
+			this._control.pos.y = y;
+			this.control.find('> div').css('top', y);
+		}
+	}
+
+	Scroller.prototype.gotoPos = function(y, moveControl){
+		var yMax = this.content[0].scrollHeight - this.content.innerHeight();
+
+		y = y < 0
+			? 0
+			: (y > yMax ? yMax : y);
+
+		var p = (y * 100) / yMax;
+		this.value = p;
+		this.y = y;
+
+		//Position of content
 		this.content.scrollTop(y);
 
 		//Position of control
@@ -115,6 +148,19 @@ var Scroller = (function(){
 		}
 
 		this.control.find('> div').bind('mousedown', mouseDown);
+	}
+
+	ScrollBar.prototype.gotoPos = function(y){
+		var yMax = this.control.height() - this.control.find('> div').height();
+		y = y < 0
+			? 0
+			: (y > yMax ? yMax : y);
+
+		this.pos.y = y;
+
+		this.control.find('> div').css('top', y);
+
+		this.control.trigger('change', [(y * 100) / yMax]);
 	}
 
 	return Scroller;

@@ -1,6 +1,9 @@
 var Scroller = (function(){
-	function Scroller(content, control){
+	function Scroller(content, control, autoRefresh){
+		autoRefresh		= autoRefresh || false;
+
 		var self 		= this;
+		this.interval 		= 0;
 		this.value 		= 0;
 		this.y 			= 0;
 		this.content 	= content;
@@ -28,6 +31,12 @@ var Scroller = (function(){
 		});
 
 		this.reset();
+
+		if(autoRefresh){
+			this.interval = setInterval(function(){
+				self.refresh();
+			}, autoRefresh);
+		}
 	}
 
 	Scroller.prototype.refresh = function(){

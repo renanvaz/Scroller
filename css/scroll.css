@@ -1,0 +1,34 @@
+.scroll-container {
+    position: absolute;
+    top: 10px;
+    left: 350px;
+    width: 16px;
+    height: 255px;
+
+    background: url('../img/scroll-background.png') no-repeat 0 0;
+}
+.scroll-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 30px;
+}
+.scroll-bar > .scroll-top{
+    position: absolute;
+    left: 0px;
+    top: 1px;
+    bottom: 10px;
+    width: 100%;
+
+    background: url('../img/scroll-top.png') no-repeat center top;
+}
+.scroll-bar > .scroll-bottom{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+
+    background: url('../img/scroll-top.png') no-repeat center bottom;
+}

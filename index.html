@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scroller Demo</title>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/scroll.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+        #content {
+            margin: 10px;
+            width: 300px;
+            height: 300px;
+            background: #ededed;
+            padding: 10px;
+            font-size: 12px;
+        }
+    </style>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/mwheelintent.js"></script>
+    <script src="js/scroller.js"></script>
+    <script>
+        $(document).ready(function(){
+            var scroller = new Scroller($('#content'), $('#scroll'));
+            //scroller.refesh();
+            //scroller.goto(scroller.value + 5, true);
+        });
+    </script>
+</head>
+<body>
+    <div id="content">
+        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.<br/>
+        Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.<br/>
+        Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.<br/>
+        Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim.<br/>
+        Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.<br/>
+        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.<br/>
+        Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.<br/>
+        Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.<br/>
+        Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim.<br/>
+        Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.<br/>
+
+        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.<br/>
+        Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.<br/>
+        Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.<br/>
+        Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim.<br/>
+        Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.<br/>
+        Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.<br/>
+        Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.<br/>
+        Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.<br/>
+        Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim.<br/>
+        Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.<br/>
+    </div>
+
+    <div id="scroll" class="scroll-container">
+        <div class="scroll-bar">
+            <div class="scroll-top"></div>
+            <div class="scroll-bottom"></div>
+        </div>
+    </div>
+</body>
+</html>
